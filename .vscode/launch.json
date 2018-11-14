@@ -1,0 +1,11 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+    {
+			"name": "Windows",
+			"type": "hxcpp",
+			"request": "launch",
+			"program": "${workspaceRoot}/export/windows/bin/controller2d.exe"
+		}
+	]
+}
