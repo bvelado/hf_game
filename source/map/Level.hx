@@ -1,52 +1,26 @@
 package map;
 
-import flixel.graphics.FlxGraphic;
-import flash.display.BitmapData;
-import flixel.tile.FlxTilemap;
 import flixel.FlxSprite;
-import flixel.addons.editors.tiled.TiledMap;
-import flixel.addons.editors.tiled.TiledLayer;
-import flixel.addons.editors.tiled.TiledTileLayer;
-import flixel.group.FlxSpriteGroup;
-import flixel.graphics.frames.FlxTileFrames;
+import flixel.FlxG;
+import flixel.tile.FlxTilemap;
+import flixel.math.FlxPoint;
+import flixel.addons.editors.ogmo.FlxOgmoLoader;
 
-class Level extends TiledMap {
+class Level extends FlxSprite {
 
-  static var PATH_ROOT:String = "assets/data/maps/";
+  var mapLoader:FlxOgmoLoader;
+  var layers:Array<FlxTilemap>;
 
   public function new(){
-    super("assets/data/maps/map01.xml", PATH_ROOT);
+    super();
 
-    var tilesheetsFrames:Array<FlxTileFrames> = new Array<FlxTileFrames>();
-    for(tileset in tilesetArray) {
-      // A little hacky but had to because loadGraphic doesn't
-      // like xxx/../yyy relative paths (apparently)
-      var path = haxe.io.Path.normalize(PATH_ROOT + tileset.imageSource);
-      // var graphic = FlxGraphic.
-    }
+    layers = new Array<FlxTilemap>();
+    mapLoader = new FlxOgmoLoader(AssetPaths.level01__oel);
+    
+    var layer1 = mapLoader.loadTilemap(AssetPaths.terrain__png, 64, 64, "layer_1");
+    var layer2 = mapLoader.loadTilemap(AssetPaths.terrain__png, 64, 64, "layer_2");
+    var layer3 = mapLoader.loadTilemap(AssetPaths.terrain__png, 64, 64, "layer_3");
 
-    for(layer in layers){
-      switch(layer.type){
-        case TiledLayerType.TILE: 
-          addTileLayer(layer);
-        case TiledLayerType.OBJECT:
-        default:
-      }
-    }
+    
   }
-
-  private function addTileLayer(layer:TiledLayer){
-    // var layerTilemap:FlxTilemap = new FlxTilemap();
-    // var tileLayer = cast(layer, TiledTileLayer);
-    // layerTilemap.loadMapFromArray(
-    //   tileLayer.tileArray,
-    //   width,
-    //   height, 
-    //   _tilesByLayer[0],
-    //   tileWidth,
-    //   tileHeight,
-    //   FlxTileMapAutoTiling.OFF,
-    //   0);
-  }
-
 }

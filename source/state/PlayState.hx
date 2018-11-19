@@ -15,11 +15,10 @@ class PlayState extends FlxState {
 	override public function create():Void {
 		super.create();
 
+    var level = new Level();
+
     _player = new Player(FlxG.width / 2, FlxG.height / 2);
     add(_player);
-
-    var level = new Level();
-    
 	}
 
 	override public function update(elapsed:Float):Void {
